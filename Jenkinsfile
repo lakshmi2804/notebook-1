@@ -37,7 +37,7 @@ pipeline {
 		timeout(time: 24, unit: 'HOURS') 
 	}
          stages {
-                  stage('Databricks Copy file to target') {
+                  stage('Git Clone') {
                            steps {
 				   script{
 					   sh """
