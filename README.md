@@ -99,9 +99,13 @@ First me must have to delete the previous configuration present in .databrickscf
 `sh '> ~/.databrickscfg'`
 
 `sh 'echo "$Databricks_Test_Token"'`
+
 The below commands are used to configure databricks cli in our machine to run databricks cli commands
+
 `sh 'echo "[DEFAULT]" >> ~/.databrickscfg'`
+
 `sh "echo 'host=https://test.databricks.com' >> ~/.databrickscfg"`
+
 `sh 'echo "token=\$Databricks_Test_Token" >> ~/.databrickscfg'`
 
 
