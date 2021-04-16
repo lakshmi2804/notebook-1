@@ -72,6 +72,6 @@ Here we are using only two options they are
 
 ###### Gitclone
 
-In this stage we are running a bash script file for the git cloning proccess. All the git clone process commands are written in `folder_script.sh` file.And this file is also present in our github repository.
+In this stage we are running a bash script file for the git cloning proccess. All the git clone process commands are written in `folder_script.sh` file.And this file is also present in our github repository. *What is the code that holds folder_script.sh*
 
 
