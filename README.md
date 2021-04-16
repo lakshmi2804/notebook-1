@@ -70,7 +70,7 @@ Here we are using only two options they are
 
 **Stages**
 
-###### Gitclone
+**Gitclone**
 
 In this stage we are running a bash script file for the git cloning proccess. All the git clone process commands are written in `folder_script.sh` file.And this file is also present in our github repository. The code present in folder_script.sh is
 
@@ -86,11 +86,11 @@ This will checkout the gitbranch and at last we are cross checking by running `l
 
 Then we are configuring the approver mail in the post conditions.In these configuration also we are checking two conditions whether the mails needs to be sent or no need for these we are writing an if block statement (i.e; if the "${params.Approver_Email}" is Not Applicable then we don't need to sent a mail whether the "${params.Approver_Email}" is any recipient then we have to sent a mail to that recipient).
 
-###### Approver
+**Approver**
 
 Approver mail or input needs to send or asked only when the job is configured to `Prod` environment,if the job is configured to `Test` environment then we don't need to send an email or ask for an input.Here we created an input button whether the job needs to be 'Approve' or 'Reject'.And also here we are checking the approver name also,suppose if the approver is not belongs to any of the mail we sent or specific jenkins user-id then the job must be aborted by raising an error that "unauthorized user for aprroval".If the approver belongs to mail we sent or jenkins user-id then the job must process to the further stages.After confirming the approver we also have to check another condition that the input is 'Reject'.If it is rejected then also we must have to abort the job by throwing an error "Approver has rejected the Deployment".If the input is 'Approve' and also the specific jenkins user-id or the recipient then we must have to call the function where the copy of notebook files from source to destination path and also configuring the target environment.The post conditions are also be written under approval stage beacuse the calling function is present outside the Declarative pipeline.In the post conditions we have three steps i.e; on success we have to sent an email that the job is geeting succedded and on failure we must have to sent an email that the job has been failed and finally whether the job is success or failure we must follow always condition to clean the jenkins job workspace to avoid errors for the nextbuild.
 
-###### Test or Prod
+**Test or Prod**
 
 In this stage we must have to provide the stage name as the environment name which is selected at parameters.In this stage also first we have to check whether it is `Test` or `Prod` environment and then we have to congifure the databricks according to the specified environment.Before doing the databricks configuration we must have to install databricks cli on our jenkins machine.Then if the specified environment is `Test` then we proceed to configure the `Test` environment configuration by passing the databricks url and databricks token.And the same procedure must be followed for the `Prod` environment.Configuring databricks is like
 
@@ -110,7 +110,7 @@ The below commands are used to configure databricks cli in our machine to run da
 
 In the same way we can configure the `Prod` environment.After setting up the configurations we again wrote a bash file (i.e; `notebook-copy-new.sh`)which contains copy of code in shell script to copy files from source path (i.e; github) to the destination (i.e; databricks workspace).This script should also be present in the same gitrepo where the jenkins file is present.while running the script file we must have to pass some command line arguments(i.e; Notebook_Path_in_Git, Target_Path_in_Databricks, Git_Branch, Git_Url, WORKSPACE).First the script file call these arguments and assign them to some variables.Then we must have to create a backup directory with the timestamp.It is used to backup the notebook files.Then we will run a for loop to iterate how many number of notebooks to copied and these will be stored in test1 file which is to be created during the execution.In the same way we will run an another for loop to iterate the destination path and it will be copied to test2 file which is also to be created during the execution.After these two for loops we will run another loop to have one to one mapping between sourcepath and the targetpath,in the loop itself we are checking a condition that notebook is a single file or multiple notebook files under single directory to be copied.If it is a directory then we must have to copy files from databricks workspace to our local backup directory and then we have to delete all the files present in the targetpath if it is directory and then we have to copy files from github to databricks worksapce.If it is a file then it not be deleted but it must be copied to our local backup folder and then it must be copied or update the target file.After copying the notebook files then we must have to copy the backup folder to the target folder backup folder with folder name as user(i.e; user who runs the jenkins job) with the timestamp.Here the docker container will stop and it will be exited.
 
-###### CleanWs
+**CleanWs**
 
 This will be begins with an another node this is not a part of declarative pipeline.While we are running docker agent with root user some untracked directories are being backedup to jenkins workspace while cleaning the job workspace.To delete those untracked directories we are using an another node.In this node first we are finding where the untracked directories are being present using the `find` command and deleting the directories which are found.
 
