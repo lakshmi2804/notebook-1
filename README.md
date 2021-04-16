@@ -9,7 +9,7 @@ The intent of this repository is to provide Data Engineer and Data Scientist who
 
 Dockerfile is used to build up  our own custom image with specific requirements. The Docker image builds up with base ubuntu:latestversion, This Dockerfile will install Git, Python3.7, Databricks-cli, jq, curl and also the latest verion of pip. Then we build up the image and pushed to Dockerhub using below docker commands.
 
-`docker build -t my-private-repo .` 
+`docker build -t test/python3-pip-databricks:1 .` 
 
 '.' represents the Dockerfile is present in current directory and -t represents tag name.Then after building up the image we have to push to Dockerhub.Before pushing to the Dockerhub we have to login Dockerhub with your credentials in local machine where the image is build.
 
@@ -17,7 +17,7 @@ Dockerfile is used to build up  our own custom image with specific requirements.
 
 This will login to your Dockerhub and provide access to push the images we build up locally.
 
-`docker push my-private-repo`
+`docker push test/python3-pip-databricks:1`
 
 Finally this will push our image to Dockerhub 
 
@@ -28,6 +28,5 @@ Later on finding the user and we are cleaning up the workspace which is used for
 
 After using the scripted pipeline we moved to declarative pipeline.Where we are defining the some environment variables which are to be used in the pipeline.The variables we defined based on our requirement are `databricks_url, databricks_token, buildType, sample, test, approvalMap`.Each variable has its own specific task to be performed under the stages of pipeline.After defining the variables we start our pipeline code 
 
-
-
+Though it's clearly mentioned our pipeline needs to be run in docker we making agent as docker and image used here is which we previously builded up and pushed to our Dockerhub (i.e test/python3-pip-databricks:1) and we are passing arguments to docker to run as root user (i.e; args '-u root').After clearing the agent section we moved to paramters which are to be passed for our pipeline
 
