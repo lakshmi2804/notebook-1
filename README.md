@@ -23,6 +23,8 @@ Finally this will push our image to Dockerhub
 
 ## Jenkinsfile
 
+###### Scripted pipeline
+
 The Jenkinsfile starts with scripted pipeline having master node where it will be used to perform which user is currently running the job and then assigning the user to a specific variable `BUILD_TRIGGER_BY`.
 Later on finding the user and we are cleaning up the workspace which is used for the previous build.
 
