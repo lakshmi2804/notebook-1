@@ -84,5 +84,9 @@ This will clone the repository and all cloned files will be created under repo n
 
 This will checkout the gitbranch and at last we are cross checking by running `ls -lrt` command.
 
+Then we are configuring the approver mail in the post conditions.In these configuration also we are checking two conditions whether the mails needs to be sent or no need for these we are writing an if block statement (i.e; if the "${params.Approver_Email}" is Not Applicable then we don't need to sent a mail whether the "${params.Approver_Email}" is any recipient then we have to sent a mail to that recipient).
 
+###### Approver
+
+Approver mail or input needs to send or asked only when the job is configured to `Prod` environment,if the job is configured to `Test` environment then we don't need to send an email or ask for an input.Here we created an input button whether the job needs to be 'Approve' or 'Reject'.And also here we are checking the approver name also,suppose if the approver is not belongs to any of the mail we sent or specific jenkins user-id then the job must be aborted by raising an error that "unauthorized user for aprroval".If the approver belongs to mail we sent or jenkins user-id then the job must process to the further stages.After confirming the approver we also have to check another condition that the input is 'Reject'.If it is rejected then also we must have to abort the job by throwing an error "Approver has rejected the Deployment".If the input is 'Approve' and also the specific jenkins user-id or the recipient then we must have to call the function where the copy of notebook files from source to destination path and also configuring the target environment.
 
