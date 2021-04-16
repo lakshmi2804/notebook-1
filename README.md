@@ -72,6 +72,17 @@ Here we are using only two options they are
 
 ###### Gitclone
 
-In this stage we are running a bash script file for the git cloning proccess. All the git clone process commands are written in `folder_script.sh` file.And this file is also present in our github repository. *What is the code that holds folder_script.sh*
+In this stage we are running a bash script file for the git cloning proccess. All the git clone process commands are written in `folder_script.sh` file.And this file is also present in our github repository. The code present in folder_script.sh is
+
+First we are passing some command line arguments to the script file (i.e; Git_Repo_Url, Git_Branch, Git_credentialsId, $WORKSPACE). $WORKSPACE is the jenkins workspace path where the jenkins job is running.The procedure we followed in the script file is first calling the command line arguments to specific variables and by following some cut commands we picked the repo name from the git repo url and also the branch (specifically when the branch name contains '/' EX:test/test1/test2),Then we created two directories using `mkdir` command (directories created are testing and subset) and after creating the directories we copied testing directory to subset directory and then `cd` to 'subset'.After changing to subset directory we moved to git clone process using the command 
+
+`git clone https://$GitToken@$Git_Url`
+
+This will clone the repository and all cloned files will be created under repo named folder in subset folder present in jenkins workspace.After the cloning process we again back to workspace and copy the cloned folder to another folder which is named as the git branch name (i.e; $Git_Branch in bash file) and finally moved to that folder and trying to do checkout process to know whether we are in the exact path or not
+
+`git checkout $Git_Branch`
+
+This will checkout the gitbranch and at last we are cross checking by running `ls -lrt` command.
+
 
 
