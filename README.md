@@ -56,8 +56,22 @@ After the agent section we then moved to paramters section which are to be passe
 
 `Approver_Email` : This parameter is only used for approval whenever the user needs to copy file to `Prod`
 
+**Environment Variables**
+
+In this section we will store the credentials or tokens in encrypted form. Mainly we are passing git token and databricks token these will be encrypted  by not seeing them in the console output.
+
+**Options**
+
+Here we are using only two options they are
+
+`ansiColor` : This is the plugin mainly used for colors in jenkins console output
+
+`timeout` : This will be helpfull to exit or abort the job after a particular time
+
 **Stages**
 
 ###### Gitclone
+
+In this stage we are running a bash script file for the git cloning proccess. All the git clone process commands are written in `folder_script.sh` file.And this file is also present in our github repository.
 
 
