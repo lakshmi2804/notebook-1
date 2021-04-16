@@ -11,7 +11,7 @@ Dockerfile is used to build up  our own custom image with specific requirements.
 
 `docker build .` 
 '.' represents the Dockerfile is present in current directory,Then after building up the image we have to push to Dockerhub.Before pushing to the Dockerhub we have to login Dockerhub with your credentials in local machine where the image is build.
-`docker login --username Yourusername --password Yourpassword`
+`docker login --username Username --password Password`
 
 and pushed to our docker hun
 
