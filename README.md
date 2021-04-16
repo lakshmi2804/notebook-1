@@ -28,9 +28,17 @@ Finally this will push our image to Dockerhub
 The Jenkinsfile starts with scripted pipeline having master node where it will be used to perform which user is currently running the job and then assigning the user to a specific variable `BUILD_TRIGGER_BY`.
 Later on finding the user and we are cleaning up the workspace which is used for the previous build.
 
+###### Declarative pipeline
+
 After using the scripted pipeline we moved to declarative pipeline.Where we are defining the some environment variables which are to be used in the pipeline.The variables we defined based on our requirement are `databricks_url, databricks_token, buildType, sample, test, approvalMap`.Each variable has its own specific task to be performed under the stages of pipeline.After defining the variables we start our pipeline code 
 
-Though it's clearly mentioned our pipeline needs to be run in docker we making agent as docker and image used here is which we previously builded up and pushed to our Dockerhub (i.e test/python3-pip-databricks:1) and we are passing arguments to docker to run as root user (i.e; args '-u root').After the agent section we then moved to paramters section which are to be passed by the user who is running the job.These parameters will be helpful to find the git repository and the notebook files which needs to be copied from git to databricks workspace.The parameters which the user needs to be passed are
+###### Agent Section
+
+Though it's clearly mentioned our pipeline needs to be run in docker we making agent as docker and image used here is which we previously builded up and pushed to our Dockerhub (i.e test/python3-pip-databricks:1) and we are passing arguments to docker to run as root user (i.e; args '-u root').
+
+###### Parameters Section
+
+After the agent section we then moved to paramters section which are to be passed by the user who is running the job.These parameters will be helpful to find the git repository and the notebook files which needs to be copied from git to databricks workspace.The parameters which the user needs to be passed are
 
 `Git_Repo_Url` : User needs to give the github repository url where the notebook files are present
 
@@ -47,4 +55,7 @@ Though it's clearly mentioned our pipeline needs to be run in docker we making a
 `Databricks_Token` : Here the databricks token needs to be passed for accessing the databricks workspace
 
 `Approver_Email` : This parameter is only used for approval whenever the user needs to copy file to `Prod`
+
+## Stages
+
 
