@@ -1,6 +1,6 @@
 
 # Jenkins Notebook-Copy Pipeline
 
-## Description:
+## Description
               
-              The intent of this document is to provide Data Engineer and Data Scientist who use Databricks a quick guide on how to use Jenkins notebook-copy pipeline to deploy Databricks notebooks.
+The intent of this document is to provide Data Engineer and Data Scientist who use Databricks a quick guide on how to use Jenkins notebook-copy pipeline to deploy Databricks notebooks.
