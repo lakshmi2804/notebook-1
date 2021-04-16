@@ -28,5 +28,21 @@ Later on finding the user and we are cleaning up the workspace which is used for
 
 After using the scripted pipeline we moved to declarative pipeline.Where we are defining the some environment variables which are to be used in the pipeline.The variables we defined based on our requirement are `databricks_url, databricks_token, buildType, sample, test, approvalMap`.Each variable has its own specific task to be performed under the stages of pipeline.After defining the variables we start our pipeline code 
 
-Though it's clearly mentioned our pipeline needs to be run in docker we making agent as docker and image used here is which we previously builded up and pushed to our Dockerhub (i.e test/python3-pip-databricks:1) and we are passing arguments to docker to run as root user (i.e; args '-u root').After clearing the agent section we moved to paramters which are to be passed for our pipeline
+Though it's clearly mentioned our pipeline needs to be run in docker we making agent as docker and image used here is which we previously builded up and pushed to our Dockerhub (i.e test/python3-pip-databricks:1) and we are passing arguments to docker to run as root user (i.e; args '-u root').After the agent section we then moved to paramters section which are to be passed by the user who is running the job.These parameters will be helpful to find the git repository and the notebook files which needs to be copied from git to databricks workspace.The parameters which the user needs to be passed are
+
+`Git_Repo_Url` : User needs to give the github repository url where the notebook files are present
+
+`Git_Branch` : After passing the repo url user must have to pass the gitbranch because the github will have multiple branches 
+
+`Git_credentialsId` : For accessing the github using jenkins you must need to provide the password or authorized token
+
+`Notebook_Path_in_Git` : We must provide the absolute path of notebook files present in the github
+
+`Target_Path_in_Databricks` : Then provide the target path that means the databricks workspace path
+
+`Environment` : The user also needs to specify the target environment whether it could be `Test` or `Prod`
+
+`Databricks_Token` : Here the databricks token needs to be passed for accessing the databricks workspace
+
+`Approver_Email` : This parameter is only used for approval whenever the user needs to copy file to `Prod`
 
