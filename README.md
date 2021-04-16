@@ -92,4 +92,24 @@ Approver mail or input needs to send or asked only when the job is configured to
 
 ###### Test or Prod
 
+In this stage we must have to provide the stage name as the environment name which is selected at parameters.In this stage also first we have to check whether it is `Test` or `Prod` environment and then we have to congifure the databricks according to the specified environment.Before doing the databricks configuration we must have to install databricks cli on our jenkins machine.Then if the specified environment is `Test` then we proceed to configure the `Test` environment configuration by passing the databricks url and databricks token.And the same procedure must be followed for the `Prod` environment.Configuring databricks is like
+
+First me must have to delete the previous configuration present in .databrickscfg.The below command will do that specific action if the file is not present then it will be created
+
+`sh '> ~/.databrickscfg'`
+
+`sh 'echo "$Databricks_Test_Token"'`
+The below commands are used to configure databricks cli in our machine to run databricks cli commands
+`sh 'echo "[DEFAULT]" >> ~/.databrickscfg'`
+`sh "echo 'host=https://test.databricks.com' >> ~/.databrickscfg"`
+`sh 'echo "token=\$Databricks_Test_Token" >> ~/.databrickscfg'`
+
+
+
+
+
+
+
+
+
 
