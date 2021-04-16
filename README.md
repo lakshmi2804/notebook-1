@@ -7,4 +7,6 @@ The intent of this repository is to provide Data Engineer and Data Scientist who
 
 ## Jenkinsfile
 
-The Jenkinsfile starts with master node where it will perform to find which user is running the job and also it cleans up the workspace 
+The Jenkinsfile starts with master node where it will be used to perform which user is currently running the job and then assigning the user to a specific variable.
+Later on finding the user and we are cleaning up the workspace which is used for the previous build.
+
