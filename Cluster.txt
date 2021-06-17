@@ -1,0 +1,2 @@
+databricks clusters create --json '{ "cluster_name": "", "spark_version": , "node_type_id": , "enable_elastic_disk": , "autotermination_minutes": , "driver_node_type_id": , "destination": ,
+"cluster_log_conf":{"dbfs":{"destination": }}, "aws_attributes":{"zone_id": , "instance_profile_arn": , "first_on_demand": , "availability": ,  "spot_bid_price_percent": , "ebs_volume_type": , "ebs_volume_count": , "ebs_volume_size": ""}, "spark_env_vars":{"PYSPARK_PYTHON": }}'
